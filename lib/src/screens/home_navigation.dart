@@ -13,6 +13,8 @@ class _MyStatefulWidgetState extends State<BottomNavRisa> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  //INSIDE NAVIGATION VIEW
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     Text(
@@ -25,10 +27,35 @@ class _MyStatefulWidgetState extends State<BottomNavRisa> {
     ),
   ];
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index, BuildContext context) {
     setState(() {
-      _selectedIndex = index;
+      if (index == 1) {
+        _startAddIncident(context);
+      } else {
+        _selectedIndex = index;
+      }
     });
+  }
+
+  void _startAddIncident(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (bCtx) {
+          return Container(
+            color: Colors.transparent,
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: Container(
+              child: Center(
+                child: Text("AJHAHAHA"),
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+            ),
+          );
+        });
   }
 
   @override
@@ -38,7 +65,7 @@ class _MyStatefulWidgetState extends State<BottomNavRisa> {
       backgroundColor: Color.fromARGB(255, 126, 124, 255),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 126, 124, 255),
         title: const Text('RISA'),
         actions: <Widget>[
           Row(
@@ -64,7 +91,17 @@ class _MyStatefulWidgetState extends State<BottomNavRisa> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(
+      //     Icons.add,
+      //     color: Colors.black,
+      //   ),
+      //   backgroundColor: Colors.white,
+      //   onPressed: () => _startAddIncident(context),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -81,7 +118,7 @@ class _MyStatefulWidgetState extends State<BottomNavRisa> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red[300],
-        onTap: _onItemTapped,
+        onTap: (index) => _onItemTapped(index, context),
       ),
     );
   }

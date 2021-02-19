@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: router.generateRoute,
       initialRoute: HomeViewRoute,
       home: BottomNavRisa(),
+      theme: ThemeData(
+        // primarySwatch: Colors.teal,
+        canvasColor: Colors.transparent,
+      ),
     );
   }
 }

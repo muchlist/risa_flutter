@@ -14,17 +14,14 @@ class ImprovementTile extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 8),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Expanded(flex: 1, child: const Text("  o")),
             Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.donut_small,
-                  size: 10,
-                )),
-            Expanded(
-              flex: 8,
+              flex: 9,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       title,
